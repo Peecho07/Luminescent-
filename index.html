@@ -274,9 +274,43 @@ footer p { margin: 0; color: var(--muted); font-size: .92rem; }
   .swap, .steam, .flame { animation: none; }
   .mode-toggle .knob { transition: none; }
 }
+
+/* ===== DEMO RIBBON =====================================================
+   Marks this build as an unfinished concept preview.
+   To remove: delete this block, the .demo-ribbon element after <body>,
+   and the .demo-copyright line in the footer.
+   ====================================================================== */
+.demo-ribbon {
+  position: fixed;
+  /* Centred on the corner diagonal so the full label stays on screen:
+     a 260px band centred 85px from the left and bottom edges. */
+  bottom: 70px;
+  left: -45px;
+  z-index: 999;
+  width: 260px;
+  padding: 7px 0;
+  transform: rotate(45deg);
+  pointer-events: none;          /* never intercepts clicks */
+  text-align: center;
+  background: #B3261E;           /* fixed colors: must read the same in both themes */
+  color: #FFFFFF;
+  font-family: var(--body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  box-shadow: 0 2px 10px rgba(0,0,0,.28);
+}
+.demo-copyright { opacity: .75; font-size: 14px; }
+/* Keeps the footer text clear of the fixed ribbon at the bottom of the page. */
+footer { padding-bottom: 185px; }
+@media (prefers-reduced-motion: reduce) { .demo-ribbon { box-shadow: none; } }
+/* ===== END DEMO RIBBON ===== */
 </style>
 </head>
 <body>
+
+<!-- DEMO RIBBON: delete this line to remove the preview banner -->
+<div class="demo-ribbon">Concept preview by tsKaizen</div>
 
 <nav class="nav" aria-label="Main">
   <div class="wrap">
@@ -668,6 +702,7 @@ footer p { margin: 0; color: var(--muted); font-size: .92rem; }
     <a class="wordmark" href="#top">Luminescent</a>
     <p>Coffee by day. Cocktails by night. East Orlando.</p>
     <p>Website concept by tsKaizen</p>
+    <p class="demo-copyright">&copy; 2026 tsKaizen. Concept preview, not for public use.</p>
   </div>
 </footer>
 
