@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luminescent | Coffee by day, cocktails by night | East Orlando</title>
+<meta name="description" content="Luminescent is an Indian-inspired coffee bar by day and 21+ cocktail lounge by night on East Colonial Drive in Orlando.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#06130E">
+<meta property="og:title" content="Luminescent | Coffee by day, cocktails by night">
+<meta property="og:description" content="An Indian-inspired coffee bar by day and 21+ cocktail lounge by night in East Orlando.">
+<meta property="og:image" content="assets/luminescent-interior.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@property --bg { syntax: '<color>'; inherits: true; initial-value: #F5E3B3; }
+@property --surface { syntax: '<color>'; inherits: true; initial-value: #FAEFD2; }
+@property --ink { syntax: '<color>'; inherits: true; initial-value: #10352A; }
+@property --muted { syntax: '<color>'; inherits: true; initial-value: #4E6558; }
+@property --accent { syntax: '<color>'; inherits: true; initial-value: #1B6247; }
+@property --accent-ink { syntax: '<color>'; inherits: true; initial-value: #FAEFD2; }
+@property --line { syntax: '<color>'; inherits: true; initial-value: #DCC690; }
+@property --rose { syntax: '<color>'; inherits: true; initial-value: #A8374E; }
+@property --glow { syntax: '<color>'; inherits: true; initial-value: rgba(255,181,71,0); }
+
+:root {
+  --bg: #F5E3B3;
+  --surface: #FAEFD2;
+  --ink: #10352A;
+  --muted: #4E6558;
+  --accent: #1B6247;
+  --accent-ink: #FAEFD2;
+  --line: #DCC690;
+  --rose: #A8374E;
+  --glow: rgba(255,181,71,0);
+  --display: "Gloock", "Bodoni 72", Didot, Georgia, serif;
+  --body: "Hanken Grotesk", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --pad: clamp(20px, 4vw, 48px);
+  transition: --bg .9s ease, --surface .9s ease, --ink .9s ease, --muted .9s ease,
+              --accent .9s ease, --accent-ink .9s ease, --line .9s ease, --rose .9s ease, --glow .9s ease;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #06130E; --surface: #0D2019; --ink: #F3E4C4; --muted: #A5B8AA;
+    --accent: #FFB547; --accent-ink: #1A1206; --line: #1F3B2E; --rose: #FF7A9A;
+    --glow: rgba(255,181,71,.55);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #06130E; --surface: #0D2019; --ink: #F3E4C4; --muted: #A5B8AA;
+  --accent: #FFB547; --accent-ink: #1A1206; --line: #1F3B2E; --rose: #FF7A9A;
+  --glow: rgba(255,181,71,.55);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 17px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { max-width: 100%; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+[data-theme="dark"] .only-day,
+:root:not([data-theme="dark"]) .only-night { display: none !important; }
+.swap { animation: swapIn .7s ease both; }
+@keyframes swapIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+h1, h2 { font-family: var(--display); font-weight: 400; letter-spacing: -.01em; text-shadow: 0 0 28px var(--glow); margin: 0; }
+h1 { font-size: clamp(2.6rem, 5.2vw, 4.4rem); line-height: 1.02; }
+h2 { font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.08; }
+h3 { font-size: 1.12rem; font-weight: 600; margin: 0 0 .35rem; }
+p { margin: 0 0 1rem; }
+
+.wrap { max-width: 1220px; margin: 0 auto; padding: 0 var(--pad); }
+
+/* Nav */
+.nav {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap { display: flex; align-items: center; gap: 28px; height: 68px; }
+.wordmark { font-family: var(--display); font-size: 1.6rem; text-decoration: none; text-shadow: 0 0 18px var(--glow); margin-right: auto; }
+.nav-links { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+.nav-links a { text-decoration: none; font-weight: 500; font-size: .98rem; color: var(--muted); }
+.nav-links a:hover { color: var(--ink); }
+.mode-toggle {
+  position: relative; width: 70px; height: 36px; border-radius: 999px; cursor: pointer;
+  border: 1.5px solid var(--ink); background: var(--surface); padding: 0;
+}
+.mode-toggle .knob {
+  position: absolute; top: 3px; left: 3px; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--accent); display: grid; place-items: center; transition: transform .5s cubic-bezier(.6,.1,.2,1);
+}
+.mode-toggle svg { width: 16px; height: 16px; color: var(--accent-ink); }
+[data-theme="dark"] .mode-toggle .knob { transform: translateX(34px); box-shadow: 0 0 16px var(--glow); }
+@media (max-width: 760px) { .nav-links { display: none; } }
+
+/* Hero */
+.hero { padding: clamp(28px, 5vw, 64px) 0 40px; }
+.hero-grid { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(28px, 4vw, 64px); align-items: center; }
+.hero-copy .lede { font-size: 1.15rem; color: var(--muted); max-width: 34ch; margin: 1.2rem 0 1.6rem; }
+.live { display: inline-flex; align-items: center; gap: 10px; font-weight: 500; font-size: .95rem; margin-bottom: 1.4rem; }
+.live .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); }
+.live.open .dot { background: #2FA56E; box-shadow: 0 0 0 4px color-mix(in srgb, #2FA56E 25%, transparent); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-block; text-decoration: none; font-weight: 600; font-size: 1rem;
+  padding: 13px 22px; border-radius: 999px; border: 1.5px solid var(--accent);
+  background: var(--accent); color: var(--accent-ink); cursor: pointer; font-family: inherit;
+}
+.btn:hover { box-shadow: 0 0 22px var(--glow); filter: brightness(1.05); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+
+.scene-frame {
+  position: relative; overflow: hidden; background: #0E231A;
+  border-radius: 50% 50% 18px 18px / 20% 20% 18px 18px;
+  box-shadow: 0 30px 80px -30px rgba(0,0,0,.45), 0 0 60px -10px var(--glow);
+}
+.scene-frame svg { display: block; width: 100%; height: auto; }
+
+/* Scrubber */
+.dial { margin-top: 36px; }
+.dial-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+.dial-head label { font-weight: 500; color: var(--muted); }
+.dial-time { font-family: var(--display); font-size: 1.9rem; line-height: 1; }
+.dial-track { position: relative; padding-bottom: 58px; }
+.dial input[type=range] {
+  -webkit-appearance: none; appearance: none; width: 100%; height: 14px; border-radius: 999px; margin: 0;
+  background: linear-gradient(90deg, #A6D8EE 0%, #F7DC94 38%, #F2A15E 55%, #C4566F 62%, #3C2B64 70%, #0C1234 82%, #050818 100%);
+  outline: none; cursor: pointer;
+}
+.dial input[type=range]:focus-visible { outline: 3px solid var(--accent); outline-offset: 6px; }
+.dial input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 40px; height: 40px; border-radius: 50%;
+  border: 2px solid #10352A; background: #FFF4C8 center/22px no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310352A' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4.5'/%3E%3Cpath d='M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8'/%3E%3C/svg%3E");
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+}
+.dial input[type=range]::-moz-range-thumb {
+  width: 38px; height: 38px; border-radius: 50%; border: 2px solid #10352A; background: #FFF4C8 center/22px no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310352A' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4.5'/%3E%3Cpath d='M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8'/%3E%3C/svg%3E");
+}
+.dial input.is-night::-webkit-slider-thumb {
+  background-color: #1A1B3A; border-color: #FFB547; box-shadow: 0 0 22px rgba(255,181,71,.7);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFD89A'%3E%3Cpath d='M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z'/%3E%3C/svg%3E");
+}
+.dial input.is-night::-moz-range-thumb {
+  background-color: #1A1B3A; border-color: #FFB547;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFD89A'%3E%3Cpath d='M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z'/%3E%3C/svg%3E");
+}
+.ticks { position: absolute; left: 0; right: 0; top: 24px; height: 20px; font-size: .85rem; color: var(--muted); }
+.ticks span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+.ticks span:first-child { transform: none; }
+.ticks span:last-child { transform: translateX(-100%); }
+.cocktail-span {
+  position: absolute; top: 48px; left: 58.82%; right: 0; border-top: 2px solid var(--rose);
+  font-size: .85rem; color: var(--rose); padding-top: 4px; font-weight: 500;
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-copy .lede { max-width: 46ch; }
+}
+@media (max-width: 560px) { .ticks .opt { display: none; } }
+
+/* Sections */
+section { padding: clamp(64px, 9vw, 120px) 0; }
+.band { background: var(--surface); border-block: 1px solid var(--line); }
+
+.story-photo { margin: clamp(48px, 7vw, 88px) 0 0; }
+.story-photo img {
+  display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover;
+  border-radius: 50% 50% 18px 18px / 12% 12% 18px 18px;
+  box-shadow: 0 30px 80px -34px rgba(0,0,0,.45), 0 0 70px -14px var(--glow);
+  filter: brightness(1.05) saturate(.96); transition: filter .9s ease, box-shadow .9s ease;
+}
+[data-theme="dark"] .story-photo img { filter: brightness(.9) saturate(1.08); }
+.story-photo figcaption { margin-top: 14px; font-size: .92rem; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .story-photo img { transition: none; } }
+.story-grid { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 5vw, 80px); }
+.story-intro p { color: var(--muted); max-width: 36ch; margin-top: 1.2rem; }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 48px; }
+.facts p { color: var(--muted); margin: 0; }
+.facts h3 { font-family: var(--display); font-weight: 400; font-size: 1.5rem; margin-bottom: .5rem; }
+@media (max-width: 900px) { .story-grid, .facts { grid-template-columns: 1fr; } }
+
+/* Menu */
+.menu-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 18px; }
+.tabs { display: inline-flex; border: 1.5px solid var(--ink); border-radius: 999px; padding: 4px; gap: 4px; }
+.tabs button {
+  font: 600 .98rem var(--body); color: var(--ink); background: transparent; border: 0; cursor: pointer;
+  padding: 10px 20px; border-radius: 999px;
+}
+.tabs button[aria-selected="true"] { background: var(--accent); color: var(--accent-ink); box-shadow: 0 0 18px var(--glow); }
+.menu-note { color: var(--muted); max-width: 60ch; margin: 0 0 44px; }
+.menu-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px 56px; }
+.menu-group h3 { font-family: var(--display); font-weight: 400; font-size: 1.7rem; padding-bottom: 10px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+.menu-group .group-note { font-size: .95rem; color: var(--muted); margin: 0 0 6px; }
+.item { padding: 16px 0; border-bottom: 1px dashed var(--line); }
+.item:last-child { border-bottom: 0; }
+.item-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.item-name { font-weight: 600; font-size: 1.08rem; }
+.tag { font-size: .78rem; font-weight: 600; color: var(--rose); border: 1px solid currentColor; border-radius: 999px; padding: 1px 9px; }
+.item p { margin: 4px 0 0; color: var(--muted); font-size: .98rem; max-width: 46ch; }
+
+/* Pop-ups */
+.pop-grid { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
+.pop-intro > p { color: var(--muted); max-width: 40ch; margin: 1.2rem 0 2rem; }
+.slots { display: grid; gap: 22px; }
+.slot { padding-left: 18px; border-left: 3px solid var(--accent); }
+.slot h3 { margin-bottom: .2rem; }
+.slot p { color: var(--muted); margin: 0; }
+form { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: clamp(22px, 3vw, 36px); }
+.band form { background: var(--bg); }
+.field { margin-bottom: 18px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 620px) { .row { grid-template-columns: 1fr; } }
+label, legend { display: block; font-weight: 600; font-size: .95rem; margin-bottom: 6px; }
+.opt-label { font-weight: 400; color: var(--muted); }
+input[type=text], input[type=email], select, textarea {
+  width: 100%; font: 400 1rem var(--body); color: var(--ink); background: transparent;
+  border: 1.5px solid var(--line); border-radius: 12px; padding: 12px 14px;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+select option { color: #10352A; }
+textarea { min-height: 110px; resize: vertical; }
+fieldset { border: 0; padding: 0; margin: 0 0 18px; }
+.radios { display: flex; gap: 10px; flex-wrap: wrap; }
+.radios label { font-weight: 500; display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid var(--line); border-radius: 999px; padding: 8px 16px; cursor: pointer; margin: 0; }
+.radios input { accent-color: var(--accent); }
+.radios label:has(input:checked) { border-color: var(--accent); }
+.error { color: var(--rose); font-size: .88rem; margin-top: 5px; display: none; }
+.field.invalid .error { display: block; }
+.field.invalid input, .field.invalid textarea { border-color: var(--rose); }
+.sent { display: none; }
+form.done .fields { display: none; }
+form.done .sent { display: block; }
+.sent h3 { font-family: var(--display); font-weight: 400; font-size: 1.8rem; }
+.sent p { color: var(--muted); }
+
+/* Visit */
+.visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 80px); margin-top: 36px; }
+.visit-grid address { font-style: normal; font-size: 1.3rem; line-height: 1.45; margin-bottom: 18px; }
+.contact-list { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 10px; }
+.contact-list a { font-weight: 500; }
+.notes { margin-top: 28px; color: var(--muted); }
+.hours { width: 100%; border-collapse: collapse; font-size: 1.02rem; }
+.hours td { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.hours td:last-child { text-align: right; }
+.hours tr.today td { font-weight: 600; }
+.hours tr.today td:first-child::after { content: " (today)"; font-weight: 400; color: var(--muted); }
+@media (max-width: 800px) { .visit-grid { grid-template-columns: 1fr; } }
+
+footer { border-top: 1px solid var(--line); padding: 36px 0 44px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+footer .wordmark { margin: 0; }
+footer p { margin: 0; color: var(--muted); font-size: .92rem; }
+
+/* Scene details */
+.steam { animation: steam 3.2s ease-in-out infinite; }
+.steam.s2 { animation-delay: 1.1s; }
+@keyframes steam { 0% { opacity: 0; transform: translateY(6px); } 40% { opacity: .7; } 100% { opacity: 0; transform: translateY(-14px); } }
+.flame { animation: flicker 1.6s ease-in-out infinite; transform-origin: 850px 425px; }
+@keyframes flicker { 0%,100% { opacity: 1; transform: scaleY(1); } 50% { opacity: .75; transform: scaleY(.88); } }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { transition: none; }
+  html { scroll-behavior: auto; }
+  .swap, .steam, .flame { animation: none; }
+  .mode-toggle .knob { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="wordmark" href="#top">Luminescent</a>
+    <ul class="nav-links">
+      <li><a href="#story">Our story</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#popups">Pop-ups</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <button class="mode-toggle" id="modeToggle" aria-label="Switch to night">
+      <span class="knob">
+        <svg class="only-day" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+        <svg class="only-night" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+      </span>
+    </button>
+  </div>
+</nav>
+
+<main id="top">
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="live" id="liveStatus"><span class="dot"></span><span id="liveText">Checking hours</span></p>
+          <div class="only-day swap">
+            <h1>Coffee by day, with a little cardamom.</h1>
+            <p class="lede">An Indian-inspired coffee bar in East Orlando. Order a D's Delight, grab a seat at the green marble bar, and stay as long as you like.</p>
+            <div class="actions">
+              <a class="btn" href="#menu">See the coffee menu</a>
+              <a class="btn ghost" href="#visit">Plan a visit</a>
+            </div>
+          </div>
+          <div class="only-night swap">
+            <h1>Cocktails by night, with a little tamarind.</h1>
+            <p class="lede">At 6 PM the lamps come up and the coffee bar becomes a 21+ cocktail lounge. Start with an Uncle Mike.</p>
+            <div class="actions">
+              <a class="btn" href="#menu">See the cocktail menu</a>
+              <a class="btn ghost" href="#popups">Host a pop-up</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="scene-frame">
+          <svg id="scene" viewBox="0 0 1000 700" role="img" aria-label="Illustration of the Luminescent bar that changes from daylight to evening lamplight as you move the time slider">
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                <stop id="sky1" offset="0" stop-color="#A6D8EE"/>
+                <stop id="sky2" offset="1" stop-color="#FFEBC0"/>
+              </linearGradient>
+              <radialGradient id="lampGlow">
+                <stop offset="0" stop-color="#FFE3A0" stop-opacity=".95"/>
+                <stop offset=".3" stop-color="#FFB547" stop-opacity=".45"/>
+                <stop offset="1" stop-color="#FFB547" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="sunGlow">
+                <stop offset="0" stop-color="#FFF6D6" stop-opacity=".9"/>
+                <stop offset="1" stop-color="#FFF6D6" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="candleGlow">
+                <stop offset="0" stop-color="#FFD27A" stop-opacity=".8"/>
+                <stop offset="1" stop-color="#FFB547" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#FFFBEA" stop-opacity=".55"/>
+                <stop offset="1" stop-color="#FFFBEA" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#FFC56B" stop-opacity=".35"/>
+                <stop offset="1" stop-color="#FFC56B" stop-opacity="0"/>
+              </linearGradient>
+              <clipPath id="windowsClip">
+                <path d="M110 290 L110 130 C110 90 190 70 200 40 C210 70 290 90 290 130 L290 290 Z"/>
+                <path d="M410 290 L410 130 C410 90 490 70 500 40 C510 70 590 90 590 130 L590 290 Z"/>
+                <path d="M710 290 L710 130 C710 90 790 70 800 40 C810 70 890 90 890 130 L890 290 Z"/>
+              </clipPath>
+              <mask id="moonMask">
+                <circle r="20" fill="#fff"/>
+                <circle cx="9" cy="-7" r="17" fill="#000"/>
+              </mask>
+              <filter id="soft" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="7"/></filter>
+            </defs>
+
+            <rect class="lerp" width="1000" height="700" data-day="#E9D3A3" data-night="#0E231A"/>
+            <!-- decorative arch border band on wall -->
+            <rect class="lerp" y="0" width="1000" height="18" data-day="#D9BD83" data-night="#0A1A13"/>
+
+            <!-- windows -->
+            <g clip-path="url(#windowsClip)">
+              <rect width="1000" height="300" fill="url(#sky)"/>
+              <g id="stars" opacity="0" fill="#FFF3D6"></g>
+              <g id="sun"><circle r="70" fill="url(#sunGlow)"/><circle id="sunCore" r="24" fill="#FFF4C8"/></g>
+              <g id="moon" opacity="0"><circle r="20" fill="#F4EBD0" mask="url(#moonMask)"/></g>
+              <!-- distant palm silhouettes -->
+              <g class="lerp" data-day="#7FA98A" data-night="#070B1C">
+                <path d="M130 290 L130 250 Q150 238 175 246 L180 290 Z"/>
+                <path d="M600 290 Q560 262 520 270 Q470 250 440 290 Z"/>
+                <path d="M720 290 Q760 255 820 266 Q860 250 890 268 L890 290 Z"/>
+              </g>
+            </g>
+            <g class="lerp-stroke" fill="none" stroke-width="9" data-day="#8A5A33" data-night="#2E1E12">
+              <path d="M110 290 L110 130 C110 90 190 70 200 40 C210 70 290 90 290 130 L290 290 Z"/>
+              <path d="M410 290 L410 130 C410 90 490 70 500 40 C510 70 590 90 590 130 L590 290 Z"/>
+              <path d="M710 290 L710 130 C710 90 790 70 800 40 C810 70 890 90 890 130 L890 290 Z"/>
+            </g>
+            <g class="lerp-stroke" stroke-width="4" data-day="#8A5A33" data-night="#2E1E12">
+              <line x1="200" y1="48" x2="200" y2="290"/><line x1="110" y1="190" x2="290" y2="190"/>
+              <line x1="500" y1="48" x2="500" y2="290"/><line x1="410" y1="190" x2="590" y2="190"/>
+              <line x1="800" y1="48" x2="800" y2="290"/><line x1="710" y1="190" x2="890" y2="190"/>
+            </g>
+
+            <!-- back bar shelves -->
+            <rect id="ledGlow" x="90" y="318" width="820" height="30" fill="#FFB547" filter="url(#soft)" opacity="0"/>
+            <rect id="ledGlow2" x="90" y="386" width="820" height="30" fill="#FF7A9A" filter="url(#soft)" opacity="0"/>
+            <g id="dayShelf"></g>
+            <g id="nightShelf" opacity="0"></g>
+            <rect class="lerp" x="80" y="330" width="840" height="9" rx="2" data-day="#8A5A33" data-night="#3A2616"/>
+            <rect class="lerp" x="80" y="398" width="840" height="9" rx="2" data-day="#8A5A33" data-night="#3A2616"/>
+
+            <!-- daylight beams -->
+            <g id="beams" opacity="1">
+              <polygon points="110,290 290,290 440,700 240,700" fill="url(#beam)"/>
+              <polygon points="410,290 590,290 740,700 540,700" fill="url(#beam)"/>
+              <polygon points="710,290 890,290 1040,700 840,700" fill="url(#beam)"/>
+            </g>
+
+            <!-- pendant lamps -->
+            <g id="lamps"></g>
+
+            <!-- floor -->
+            <rect class="lerp" y="636" width="1000" height="64" data-day="#B07A48" data-night="#24170E"/>
+
+            <!-- counter: green marble top -->
+            <rect class="lerp" x="30" y="438" width="940" height="28" rx="4" data-day="#1F6B50" data-night="#12402F"/>
+            <g stroke="#FFFFFF" stroke-opacity=".28" fill="none" stroke-width="1.4">
+              <path d="M60 446 Q140 460 220 448 T400 452"/>
+              <path d="M470 444 Q560 462 650 450 T860 456"/>
+              <path d="M300 458 Q360 446 430 460"/>
+              <path d="M760 446 Q820 440 940 452"/>
+            </g>
+            <rect x="30" y="464" width="940" height="4" fill="#C49A4A"/>
+            <!-- wood front -->
+            <rect class="lerp" x="40" y="468" width="920" height="170" data-day="#9A6236" data-night="#3B2415"/>
+            <g id="slats" class="lerp-stroke" stroke-width="2" data-day="#7C4D2A" data-night="#2A190E"></g>
+            <rect x="40" y="606" width="920" height="6" rx="3" fill="#C49A4A"/>
+
+            <!-- counter items -->
+            <g id="dayCounter">
+              <!-- latte -->
+              <ellipse cx="250" cy="436" rx="34" ry="5" fill="#F4EEE2"/>
+              <path d="M226 404 L274 404 L268 434 L232 434 Z" fill="#F7F1E6"/>
+              <path d="M274 410 q16 2 12 12 q-3 7 -14 6" fill="none" stroke="#F7F1E6" stroke-width="5"/>
+              <ellipse cx="250" cy="404" rx="24" ry="4.5" fill="#D8B58A"/>
+              <path class="steam" d="M242 396 q-8 -10 0 -20 q8 -10 0 -20" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+              <path class="steam s2" d="M258 396 q-8 -10 0 -20 q8 -10 0 -20" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- cha glass + biscuits -->
+              <path d="M455 398 L485 398 L481 436 L459 436 Z" fill="#FFFFFF" fill-opacity=".55"/>
+              <path d="M457 408 L483 408 L481 436 L459 436 Z" fill="#C58A55"/>
+              <rect x="496" y="424" width="30" height="12" rx="2" fill="#E2B566"/>
+              <rect x="500" y="414" width="30" height="12" rx="2" fill="#EBC27A"/>
+              <!-- pastry -->
+              <ellipse cx="690" cy="436" rx="44" ry="6" fill="#F4EEE2"/>
+              <path d="M656 430 Q690 392 724 430 Q690 424 656 430 Z" fill="#D69A4E"/>
+              <path d="M672 420 Q690 404 708 420" fill="none" stroke="#B37333" stroke-width="2"/>
+              <!-- iced pistachio -->
+              <path d="M836 386 L866 386 L862 436 L840 436 Z" fill="#FFFFFF" fill-opacity=".5"/>
+              <path d="M838 402 L864 402 L862 436 L840 436 Z" fill="#B98556"/>
+              <rect x="837" y="388" width="28" height="14" fill="#CFE0A8"/>
+              <line x1="856" y1="360" x2="852" y2="400" stroke="#1F6B50" stroke-width="4"/>
+            </g>
+            <g id="nightCounter" opacity="0">
+              <!-- coupe -->
+              <path d="M222 396 Q250 432 278 396 Z" fill="#FFFFFF" fill-opacity=".35"/>
+              <path d="M227 400 Q250 426 273 400 Z" fill="#E26A86"/>
+              <line x1="250" y1="414" x2="250" y2="434" stroke="#FFFFFF" stroke-opacity=".6" stroke-width="3"/>
+              <ellipse cx="250" cy="436" rx="14" ry="3" fill="#FFFFFF" fill-opacity=".6"/>
+              <!-- rocks glass -->
+              <rect x="448" y="404" width="44" height="32" rx="3" fill="#FFFFFF" fill-opacity=".3"/>
+              <rect x="451" y="414" width="38" height="20" fill="#C9812A"/>
+              <rect x="458" y="408" width="16" height="16" rx="2" fill="#FFFFFF" fill-opacity=".55"/>
+              <path d="M484 402 q10 -8 18 2" fill="none" stroke="#F08A2B" stroke-width="4" stroke-linecap="round"/>
+              <!-- highball -->
+              <rect x="672" y="370" width="36" height="66" rx="3" fill="#FFFFFF" fill-opacity=".3"/>
+              <rect x="675" y="384" width="30" height="50" fill="#F2D27A"/>
+              <circle cx="704" cy="378" r="10" fill="#9BCB4E"/>
+              <!-- candle -->
+              <circle cx="850" cy="420" r="70" fill="url(#candleGlow)"/>
+              <rect x="834" y="418" width="32" height="18" rx="4" fill="#FFFFFF" fill-opacity=".45"/>
+              <path class="flame" d="M850 404 Q857 414 850 424 Q843 414 850 404 Z" fill="#FFD27A"/>
+            </g>
+
+            <!-- stools -->
+            <g id="stools"></g>
+
+            <!-- plant -->
+            <g class="lerp" data-day="#2E6B45" data-night="#0B2618">
+              <path d="M40 520 Q-10 450 20 380 Q60 440 58 520 Z"/>
+              <path d="M58 522 Q60 420 120 370 Q126 460 70 526 Z"/>
+              <path d="M50 530 Q0 520 -20 470 Q40 470 62 528 Z"/>
+            </g>
+            <path class="lerp" d="M20 520 L96 520 L86 636 L30 636 Z" data-day="#C9A36A" data-night="#2B2016"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="dial">
+        <div class="dial-head">
+          <label for="timeRange">Slide through a day at Luminescent</label>
+          <output class="dial-time" id="timeOut" for="timeRange">8:00 AM</output>
+        </div>
+        <div class="dial-track">
+          <input type="range" id="timeRange" min="8" max="25" step="0.25" value="8" aria-valuetext="8:00 AM">
+          <div class="ticks" aria-hidden="true">
+            <span style="left:0%">8 AM</span>
+            <span class="opt" style="left:17.65%">11 AM</span>
+            <span style="left:35.29%">2 PM</span>
+            <span style="left:58.82%">6 PM</span>
+            <span class="opt" style="left:76.47%">9 PM</span>
+            <span style="left:100%">1 AM</span>
+          </div>
+          <div class="cocktail-span" aria-hidden="true">Cocktail hours, 21+</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- STORY -->
+  <section id="story" class="band">
+    <div class="wrap story-grid">
+      <div class="story-intro">
+        <h2>From our family to yours.</h2>
+        <p>Luminescent is a family-run coffee bar and cocktail lounge on East Colonial Drive, just past Alafaya Trail. Co-owners Akshar and Shivam built it around their Indian heritage and one idea: the same room should feel right at 9 AM and at 11 PM.</p>
+      </div>
+      <div class="facts">
+        <div>
+          <h3>The bar</h3>
+          <p>A U-shaped bar in deep green marble anchors the room, wrapped in warm wood. Sit up front, sink into a couch, or tuck into the seats in back. The espresso machines are built under the counter, so your barista works facing you.</p>
+        </div>
+        <div>
+          <h3>The flavors</h3>
+          <p>India is the spice capital of the world, and the menu leans in. Cardamom and rose water in a latte. Pistachio and soan papdi on espresso. Tamarind and vadouvan behind the bar at night. The classics are always there too.</p>
+        </div>
+        <div>
+          <h3>The family</h3>
+          <p>The signature coffees are named for the owners' mothers, and the house cocktails honor the dads. Walk in as a stranger and you will be treated like family.</p>
+        </div>
+        <div>
+          <h3>The light</h3>
+          <p>The name is the point. Bright, easy light for working and catching up by day. Low, glowing lamps for the lounge once the sun goes down.</p>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <figure class="story-photo">
+        <img src="assets/luminescent-interior.jpg" alt="Inside Luminescent: a round bar with a green marble top and warm under-lighting, orange lounge sofas, wood-slat arches and a glowing neon light sculpture overhead" width="1440" height="810" loading="lazy" decoding="async">
+        <figcaption>The bar at the center of the room, with lounge seating all around it.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="wrap">
+      <div class="menu-head">
+        <h2>
+          <span class="only-day swap">The coffee bar</span>
+          <span class="only-night swap">The cocktail lounge</span>
+        </h2>
+        <div class="tabs" role="tablist" aria-label="Choose a menu">
+          <button role="tab" id="tabDay" aria-selected="true" aria-controls="dayMenu">Coffee bar</button>
+          <button role="tab" id="tabNight" aria-selected="false" aria-controls="nightMenu">Cocktail lounge</button>
+        </div>
+      </div>
+      <p class="menu-note only-day swap" id="dayNote"></p>
+      <p class="menu-note only-night swap" id="nightNote"></p>
+      <div class="menu-groups only-day swap" id="dayMenu" role="tabpanel" aria-labelledby="tabDay"></div>
+      <div class="menu-groups only-night swap" id="nightMenu" role="tabpanel" aria-labelledby="tabNight"></div>
+    </div>
+  </section>
+
+  <!-- POP-UPS -->
+  <section id="popups" class="band">
+    <div class="wrap pop-grid">
+      <div class="pop-intro">
+        <h2>Host a pop-up at Luminescent.</h2>
+        <p>One room, two crowds. Days bring remote workers, UCF students and weekend regulars. After 6 PM it is a 21+ cocktail crowd. Pitch the slot that fits your brand.</p>
+        <div class="slots">
+          <div class="slot">
+            <h3>Day slots, 8 AM to 6 PM</h3>
+            <p>Bakers and dessert makers, artists and maker markets, book clubs, latte art throwdowns, wellness mornings.</p>
+          </div>
+          <div class="slot">
+            <h3>Night slots, after 6 PM</h3>
+            <p>Guest chefs and street food, DJs and live sets, spirit brand tastings, comedy and trivia, private celebrations.</p>
+          </div>
+        </div>
+      </div>
+
+      <form id="popForm" novalidate>
+        <div class="fields">
+          <div class="row">
+            <div class="field">
+              <label for="brand">Brand or business</label>
+              <input type="text" id="brand" name="brand" required autocomplete="organization">
+              <p class="error">Enter your brand or business name.</p>
+            </div>
+            <div class="field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" required autocomplete="name">
+              <p class="error">Enter your name.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required autocomplete="email">
+              <p class="error">Enter an email so the team can reply.</p>
+            </div>
+            <div class="field">
+              <label for="ig">Instagram <span class="opt-label">(optional)</span></label>
+              <input type="text" id="ig" name="instagram" placeholder="@yourbrand">
+            </div>
+          </div>
+          <div class="field">
+            <label for="kind">Type of pop-up</label>
+            <select id="kind" name="type">
+              <option>Food or dessert</option>
+              <option>Maker or artist market</option>
+              <option>Music or DJ set</option>
+              <option>Beverage or spirit brand</option>
+              <option>Class or workshop</option>
+              <option>Private event or celebration</option>
+            </select>
+          </div>
+          <fieldset>
+            <legend>Which slot?</legend>
+            <div class="radios">
+              <label><input type="radio" name="slot" value="Day"> Day</label>
+              <label><input type="radio" name="slot" value="Night"> Night</label>
+              <label><input type="radio" name="slot" value="Either" checked> Either</label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="dates">Dates you have in mind <span class="opt-label">(optional)</span></label>
+            <input type="text" id="dates" name="dates" placeholder="Saturdays in October">
+          </div>
+          <div class="field">
+            <label for="about">Tell us about your pop-up</label>
+            <textarea id="about" name="about" required></textarea>
+            <p class="error">Add a short description of what you would bring.</p>
+          </div>
+          <button class="btn" type="submit">Send pop-up request</button>
+        </div>
+        <div class="sent" role="status" aria-live="polite">
+          <h3>Request sent.</h3>
+          <p id="sentText">The Luminescent team will reply by email.</p>
+          <button class="btn ghost" type="button" id="againBtn">Send another request</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section id="visit">
+    <div class="wrap">
+      <h2>Visit</h2>
+      <div class="visit-grid">
+        <div>
+          <address id="addr"></address>
+          <a class="btn" id="dirBtn" target="_blank" rel="noopener">Get directions</a>
+          <ul class="contact-list">
+            <li><a id="mailLink"></a></li>
+            <li><a id="igLink" target="_blank" rel="noopener"></a></li>
+            <li id="ratingLine"></li>
+          </ul>
+          <div class="notes" id="notes"></div>
+        </div>
+        <div>
+          <table class="hours" aria-label="Opening hours"><tbody id="hoursBody"></tbody></table>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="wordmark" href="#top">Luminescent</a>
+    <p>Coffee by day. Cocktails by night. East Orlando.</p>
+    <p>Website concept by tsKaizen</p>
+  </div>
+</footer>
+
+<script>
+/* ===== CONFIG: edit business details here ===== */
+const CONFIG = {
+  BUSINESS_NAME: "Luminescent",
+  ADDRESS_LINE_1: "12286 E Colonial Dr, Suite 105",
+  ADDRESS_LINE_2: "Orlando, FL 32826",
+  CROSS_STREETS: "Just past Alafaya Trail on East Colonial",
+  EMAIL: "luminescent.orlando@gmail.com",
+  INSTAGRAM: "luminescent.orlando",
+  GOOGLE_RATING: "4.6",
+  GOOGLE_REVIEW_COUNT: 167,
+  COCKTAIL_START_HOUR: 18,           // 6 PM: coffee menu ends, 21+ cocktail hours begin
+  HAPPY_HOUR: "Tuesday to Friday, 5 to 8 PM",
+  TIMEZONE: "America/New_York",
+  FORM_ENDPOINT: "",                 // leave empty for demo mode; add a Formspree URL when live
+  // [open, close] in 24h; close past midnight uses 25 = 1 AM
+  HOURS: { 0: [8, 22], 1: null, 2: [8, 24], 3: [8, 24], 4: [8, 24], 5: [8, 25], 6: [8, 25] }
+};
+
+const MENU = {
+  dayNote: "Coffee served 8 AM to 6 PM. The house signatures are named for the owners' mothers.",
+  nightNote: "Cocktail hours are 21+ after 6 PM. Happy hour runs " + CONFIG.HAPPY_HOUR + ". The house cocktails honor the dads.",
+  day: [
+    { title: "House signatures", items: [
+      { name: "D's Delight", tag: "Signature", desc: "Espresso and milk with house gulab jamun syrup. Soft notes of cardamom and rose water, light and not too sweet." },
+      { name: "Keral's Kulfi", tag: "Signature", desc: "Espresso and milk under pistachio cold foam, finished with crumbled soan papdi. The sweeter of the two." },
+      { name: "Chā", desc: "Traditional spiced Indian tea with milk, served with Parle-G Gold biscuits for dipping." },
+      { name: "Affogato", desc: "A shot of espresso poured over ice cream." }
+    ]},
+    { title: "Seasonal", note: "Seasonals rotate. Ask what is pouring this month.", items: [
+      { name: "Snowbird", tag: "Seasonal", desc: "Earl Grey tea, ube condensed milk, floral vanilla syrup and your choice of milk." }
+    ]},
+    { title: "Classics", items: [
+      { name: "Drip coffee", desc: "Brewed fresh through the day." },
+      { name: "Pour-over", desc: "Brewed to order, one cup at a time." },
+      { name: "Espresso drinks", desc: "Lattes, cappuccinos and more. Add vanilla, mocha, honey or floral." },
+      { name: "Iced coffee and tea", desc: "Any of the above over ice." }
+    ]},
+    { title: "Bites", items: [
+      { name: "Pastries", desc: "A rotating case of baked goods from local bakers." }
+    ]}
+  ],
+  night: [
+    { title: "House cocktails", items: [
+      { name: "Uncle Mike", tag: "Signature", desc: "Rye, Smith & Cross rum, tamarind, cinnamon demerara and cardamom bitters." },
+      { name: "Jignasty", tag: "Signature", desc: "Blanco tequila, rhum agricole, pineapple, vadouvan, ginger falernum and Tajín chili." },
+      { name: "Nimbu Pani", desc: "Named for the classic Indian street-side lime cooler." },
+      { name: "Tiger's Eye", desc: "A house favorite. Ask your bartender what goes into it." },
+      { name: "Brew Espresso Martini", desc: "The day bar's espresso, shaken into an evening classic." }
+    ]},
+    { title: "Classics", items: [
+      { name: "Old Fashioned", tag: "Happy hour", desc: "Stirred, strong and simple." },
+      { name: "Bee's Knees", tag: "Happy hour", desc: "Gin, lemon and honey." },
+      { name: "Full bar", desc: "Your usual, made well." }
+    ]},
+    { title: "Zero proof", items: [
+      { name: "Mango lassi", desc: "Spirit-free, cold and creamy." },
+      { name: "Mocktails", desc: "Zero-proof drinks built with the same care as the cocktails." }
+    ]}
+  ]
+};
+
+/* ===== Helpers ===== */
+const $ = (s) => document.querySelector(s);
+const NS = "http://www.w3.org/2000/svg";
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const smooth = (x) => { x = clamp(x); return x * x * (3 - 2 * x); };
+const hexToRgb = (h) => { const n = parseInt(h.slice(1), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; };
+const mix = (a, b, t) => { const A = hexToRgb(a), B = hexToRgb(b); return "rgb(" + A.map((v, i) => Math.round(v + (B[i] - v) * t)).join(",") + ")"; };
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function el(tag, attrs, parent) { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; }
+function fmtHour(h) {
+  const hr = Math.floor(h) % 24, min = Math.round((h - Math.floor(h)) * 60);
+  const ap = hr >= 12 ? "PM" : "AM"; const h12 = hr % 12 === 0 ? 12 : hr % 12;
+  return h12 + ":" + String(min).padStart(2, "0") + " " + ap;
+}
+function fmtShort(h) { const hr = h % 24; const ap = hr >= 12 ? "PM" : "AM"; const h12 = hr % 12 === 0 ? 12 : hr % 12; return h12 + " " + ap; }
+
+/* ===== Build scene parts ===== */
+(function buildScene() {
+  const stars = $("#stars");
+  for (let i = 0; i < 34; i++) el("circle", { cx: 100 + Math.random() * 800, cy: 50 + Math.random() * 200, r: (Math.random() * 1.6 + .6).toFixed(2) }, stars);
+
+  const day = $("#dayShelf"), night = $("#nightShelf");
+  [322, 390].forEach((baseY, row) => {
+    for (let x = 110, i = 0; x < 900; x += 46, i++) {
+      const type = (i + row) % 3;
+      if (type === 0) { // jar of beans
+        el("rect", { x: x - 13, y: baseY - 34, width: 26, height: 34, rx: 5, fill: "#F6EEDC", "fill-opacity": .85 }, day);
+        el("rect", { x: x - 11, y: baseY - 22, width: 22, height: 20, rx: 3, fill: "#6B4226" }, day);
+        el("rect", { x: x - 14, y: baseY - 38, width: 28, height: 6, rx: 2, fill: "#B8893E" }, day);
+      } else if (type === 1) { // stacked cups
+        for (let k = 0; k < 3; k++) el("path", { d: `M${x - 13} ${baseY - 12 - k * 11} L${x + 13} ${baseY - 12 - k * 11} L${x + 10} ${baseY - k * 11} L${x - 10} ${baseY - k * 11} Z`, fill: k % 2 ? "#E7A1A8" : "#FBF4E6" }, day);
+      } else { // small plant
+        el("rect", { x: x - 10, y: baseY - 16, width: 20, height: 16, rx: 3, fill: "#C9A36A" }, day);
+        el("ellipse", { cx: x - 6, cy: baseY - 24, rx: 8, ry: 12, fill: "#3E7D55", transform: `rotate(-25 ${x - 6} ${baseY - 24})` }, day);
+        el("ellipse", { cx: x + 6, cy: baseY - 26, rx: 8, ry: 13, fill: "#2E6B45", transform: `rotate(25 ${x + 6} ${baseY - 26})` }, day);
+      }
+      // bottles at night
+      const colors = ["#C9812A", "#3C7A4E", "#CFE3E0", "#B8475F", "#E3B04B", "#6A3F8E"];
+      const c = colors[(i * 7 + row * 3) % colors.length];
+      const h = 44 + ((i * 13 + row * 5) % 22);
+      el("rect", { x: x - 11, y: baseY - h * .62, width: 22, height: h * .62, rx: 4, fill: c, "fill-opacity": .92 }, night);
+      el("rect", { x: x - 4, y: baseY - h, width: 8, height: h * .4, rx: 2, fill: c }, night);
+      el("rect", { x: x - 8, y: baseY - h * .45, width: 16, height: 10, fill: "#F3E4C4", "fill-opacity": .8 }, night);
+      el("rect", { x: x - 7, y: baseY - h * .58, width: 3, height: h * .5, fill: "#FFFFFF", "fill-opacity": .35 }, night);
+    }
+  });
+
+  const lamps = $("#lamps");
+  [200, 500, 800].forEach((x) => {
+    el("polygon", { class: "cone", points: `${x - 26},178 ${x + 26},178 ${x + 120},438 ${x - 120},438`, fill: "url(#cone)", opacity: 0 }, lamps);
+    el("circle", { class: "glowc", cx: x, cy: 184, r: 120, fill: "url(#lampGlow)", opacity: 0 }, lamps);
+    el("line", { x1: x, y1: 0, x2: x, y2: 150, stroke: "#2A1B10", "stroke-width": 2 }, lamps);
+    el("path", { d: `M${x - 30} 180 Q${x - 30} 148 ${x} 146 Q${x + 30} 148 ${x + 30} 180 Z`, fill: "#B8893E" }, lamps);
+    el("circle", { class: "bulb", cx: x, cy: 182, r: 7, fill: "#FFE7A8", opacity: .35 }, lamps);
+  });
+
+  const slats = $("#slats");
+  for (let x = 80; x < 960; x += 40) el("line", { x1: x, y1: 472, x2: x, y2: 604 }, slats);
+
+  const stools = $("#stools");
+  [190, 400, 610, 820].forEach((x) => {
+    el("line", { x1: x - 20, y1: 560, x2: x - 30, y2: 690, stroke: "#C49A4A", "stroke-width": 5 }, stools);
+    el("line", { x1: x + 20, y1: 560, x2: x + 30, y2: 690, stroke: "#C49A4A", "stroke-width": 5 }, stools);
+    el("line", { x1: x - 26, y1: 640, x2: x + 26, y2: 640, stroke: "#C49A4A", "stroke-width": 4 }, stools);
+    el("ellipse", { class: "lerp", cx: x, cy: 556, rx: 46, ry: 13, "data-day": "#C9606C", "data-night": "#6E2640" }, stools);
+  });
+})();
+
+/* ===== Sky keyframes by hour ===== */
+const SKY = [
+  [8, "#A6D8EE", "#FFEBC0"], [12, "#72C2EA", "#DDF2F8"], [16, "#86C0DE", "#FFE2A6"],
+  [17.5, "#F2A15E", "#FFD39A"], [18.5, "#C4566F", "#F59E6B"], [19.5, "#3C2B64", "#B4577A"],
+  [21, "#0C1234", "#2B1F50"], [25, "#050818", "#130F2C"]
+];
+function skyAt(h) {
+  for (let i = 0; i < SKY.length - 1; i++) {
+    const [h0, a0, b0] = SKY[i], [h1, a1, b1] = SKY[i + 1];
+    if (h <= h1) { const t = clamp((h - h0) / (h1 - h0)); return [mix(a0, a1, t), mix(b0, b1, t)]; }
+  }
+  return [SKY[SKY.length - 1][1], SKY[SKY.length - 1][2]];
+}
+
+/* ===== Apply a time of day ===== */
+const range = $("#timeRange"), out = $("#timeOut");
+const lerpFills = document.querySelectorAll(".lerp");
+const lerpStrokes = document.querySelectorAll(".lerp-stroke");
+let currentMode = null;
+
+function apply(h) {
+  const light = smooth((h - 16.5) / 3.5);
+  const [s1, s2] = skyAt(h);
+  $("#sky1").setAttribute("stop-color", s1);
+  $("#sky2").setAttribute("stop-color", s2);
+
+  const sp = (h - 8) / 11;
+  const sun = $("#sun");
+  sun.setAttribute("transform", `translate(${100 + 800 * clamp(sp)} ${260 - Math.sin(Math.PI * clamp(sp)) * 200 + (sp > 1 ? 80 : 0)})`);
+  sun.setAttribute("opacity", 1 - smooth((h - 18.2) / .9));
+  $("#sunCore").setAttribute("fill", mix("#FFF4C8", "#FF9A5C", smooth((h - 16) / 2.5)));
+
+  const mp = (h - 18.8) / 6.2;
+  $("#moon").setAttribute("transform", `translate(${130 + 740 * clamp(mp)} ${275 - Math.sin(Math.PI * clamp(mp)) * 190})`);
+  $("#moon").setAttribute("opacity", smooth((h - 18.8) / 1));
+  $("#stars").setAttribute("opacity", smooth((h - 19) / 2));
+
+  $("#beams").setAttribute("opacity", (1 - smooth((h - 15) / 3.5)) * .9);
+  document.querySelectorAll("#lamps .glowc").forEach(n => n.setAttribute("opacity", light));
+  document.querySelectorAll("#lamps .cone").forEach(n => n.setAttribute("opacity", light * .8));
+  document.querySelectorAll("#lamps .bulb").forEach(n => n.setAttribute("opacity", .35 + light * .65));
+  $("#ledGlow").setAttribute("opacity", light * .55);
+  $("#ledGlow2").setAttribute("opacity", light * .3);
+
+  const swap = smooth((h - 17.6) / .8);
+  $("#dayShelf").setAttribute("opacity", 1 - swap);
+  $("#nightShelf").setAttribute("opacity", swap);
+  $("#dayCounter").setAttribute("opacity", 1 - swap);
+  $("#nightCounter").setAttribute("opacity", swap);
+
+  lerpFills.forEach(n => n.setAttribute("fill", mix(n.dataset.day, n.dataset.night, light)));
+  lerpStrokes.forEach(n => n.setAttribute("stroke", mix(n.dataset.day, n.dataset.night, light)));
+
+  range.value = h;
+  out.textContent = fmtHour(h);
+  range.setAttribute("aria-valuetext", fmtHour(h));
+
+  setMode(h >= CONFIG.COCKTAIL_START_HOUR ? "night" : "day");
+}
+
+function setMode(mode) {
+  if (mode === currentMode) return;
+  currentMode = mode;
+  const night = mode === "night";
+  document.documentElement.setAttribute("data-theme", night ? "dark" : "light");
+  range.classList.toggle("is-night", night);
+  $("#modeToggle").setAttribute("aria-label", night ? "Switch to day" : "Switch to night");
+  $("#tabDay").setAttribute("aria-selected", String(!night));
+  $("#tabNight").setAttribute("aria-selected", String(night));
+}
+
+/* ===== Tween ===== */
+let raf = null;
+function animateTo(target, dur = 1400) {
+  cancelAnimationFrame(raf);
+  const start = parseFloat(range.value);
+  if (reduceMotion || Math.abs(target - start) < .01) { apply(target); return; }
+  const t0 = performance.now();
+  const step = (now) => {
+    const p = clamp((now - t0) / dur);
+    const e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+    apply(start + (target - start) * e);
+    if (p < 1) raf = requestAnimationFrame(step);
+  };
+  raf = requestAnimationFrame(step);
+}
+
+range.addEventListener("input", () => { cancelAnimationFrame(raf); apply(parseFloat(range.value)); });
+$("#modeToggle").addEventListener("click", () => animateTo(currentMode === "night" ? 10 : 21));
+$("#tabDay").addEventListener("click", () => animateTo(10));
+$("#tabNight").addEventListener("click", () => animateTo(21));
+document.querySelectorAll('input[name="slot"]').forEach(r => r.addEventListener("change", () => {
+  if (r.value === "Day") animateTo(10); else if (r.value === "Night") animateTo(21);
+}));
+
+/* ===== Orlando time and hours ===== */
+function orlandoNow() {
+  const parts = new Intl.DateTimeFormat("en-US", { timeZone: CONFIG.TIMEZONE, weekday: "short", hour: "numeric", minute: "numeric", hour12: false }).formatToParts(new Date());
+  const get = (t) => parts.find(p => p.type === t).value;
+  const days = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+  let hour = parseInt(get("hour"), 10); if (hour === 24) hour = 0;
+  return { dow: days[get("weekday")], h: hour + parseInt(get("minute"), 10) / 60 };
+}
+const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+function liveStatus() {
+  const { dow, h } = orlandoNow();
+  const today = CONFIG.HOURS[dow], yest = CONFIG.HOURS[(dow + 6) % 7];
+  let open = false, closeAt = null;
+  if (today && h >= today[0] && h < today[1]) { open = true; closeAt = today[1]; }
+  else if (yest && yest[1] > 24 && h < yest[1] - 24) { open = true; closeAt = yest[1]; }
+  const status = $("#liveStatus");
+  if (open) {
+    const side = h >= 8 && h < CONFIG.COCKTAIL_START_HOUR ? "Coffee bar is pouring" : "Cocktail lounge is open, 21+";
+    $("#liveText").textContent = side + " until " + fmtShort(closeAt);
+    status.classList.add("open");
+  } else {
+    let msg;
+    if (today && h < today[0]) msg = "Opens today at " + fmtShort(today[0]);
+    else {
+      for (let i = 1; i <= 7; i++) { const d = (dow + i) % 7; if (CONFIG.HOURS[d]) { msg = "Opens " + (i === 1 ? "tomorrow" : DAY_NAMES[d]) + " at " + fmtShort(CONFIG.HOURS[d][0]); break; } }
+    }
+    $("#liveText").textContent = "Closed now. " + msg;
+    status.classList.remove("open");
+  }
+  const body = $("#hoursBody"); body.innerHTML = "";
+  [2, 3, 4, 5, 6, 0, 1].forEach(d => {
+    const tr = document.createElement("tr"); if (d === dow) tr.className = "today";
+    const hrs = CONFIG.HOURS[d];
+    tr.innerHTML = `<td>${DAY_NAMES[d]}</td><td>${hrs ? fmtShort(hrs[0]) + " to " + fmtShort(hrs[1]) : "Closed"}</td>`;
+    body.appendChild(tr);
+  });
+  return h;
+}
+
+/* ===== Render menu and visit ===== */
+function renderMenu(groups, target) {
+  const root = $(target);
+  groups.forEach(g => {
+    const div = document.createElement("div"); div.className = "menu-group";
+    let html = `<h3>${g.title}</h3>`;
+    if (g.note) html += `<p class="group-note">${g.note}</p>`;
+    g.items.forEach(it => {
+      html += `<div class="item"><div class="item-top"><span class="item-name">${it.name}</span>${it.tag ? `<span class="tag">${it.tag}</span>` : ""}</div><p>${it.desc}</p></div>`;
+    });
+    div.innerHTML = html; root.appendChild(div);
+  });
+}
+renderMenu(MENU.day, "#dayMenu");
+renderMenu(MENU.night, "#nightMenu");
+$("#dayNote").textContent = MENU.dayNote;
+$("#nightNote").textContent = MENU.nightNote;
+
+$("#addr").innerHTML = `${CONFIG.ADDRESS_LINE_1}<br>${CONFIG.ADDRESS_LINE_2}`;
+$("#dirBtn").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.BUSINESS_NAME + " " + CONFIG.ADDRESS_LINE_1 + " " + CONFIG.ADDRESS_LINE_2);
+$("#mailLink").href = "mailto:" + CONFIG.EMAIL; $("#mailLink").textContent = CONFIG.EMAIL;
+$("#igLink").href = "https://www.instagram.com/" + CONFIG.INSTAGRAM + "/"; $("#igLink").textContent = "@" + CONFIG.INSTAGRAM + " on Instagram";
+$("#ratingLine").textContent = CONFIG.GOOGLE_RATING + " stars from " + CONFIG.GOOGLE_REVIEW_COUNT + " Google reviews";
+$("#notes").innerHTML = `<p>${CONFIG.CROSS_STREETS}.</p><p>Coffee until 6 PM. Cocktail hours are 21+ after 6 PM.</p><p>Happy hour: ${CONFIG.HAPPY_HOUR}.</p>`;
+
+/* ===== Pop-up form ===== */
+const form = $("#popForm");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  let ok = true;
+  form.querySelectorAll("[required]").forEach(inp => {
+    const f = inp.closest(".field");
+    const valid = inp.value.trim() !== "" && (inp.type !== "email" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inp.value.trim()));
+    f.classList.toggle("invalid", !valid);
+    if (!valid && ok) { inp.focus(); ok = false; }
+  });
+  if (!ok) return;
+  const data = new FormData(form);
+  if (CONFIG.FORM_ENDPOINT) {
+    try { await fetch(CONFIG.FORM_ENDPOINT, { method: "POST", body: data, headers: { Accept: "application/json" } }); }
+    catch (err) { console.error("Form send failed", err); }
+  }
+  $("#sentText").textContent = `The Luminescent team will reply to ${data.get("email")} about your ${String(data.get("slot")).toLowerCase()} slot.`;
+  form.classList.add("done");
+});
+form.querySelectorAll("[required]").forEach(inp => inp.addEventListener("input", () => inp.closest(".field").classList.remove("invalid")));
+$("#againBtn").addEventListener("click", () => { form.reset(); form.classList.remove("done"); });
+
+/* ===== Start: sweep from opening to the real Orlando time ===== */
+const nowH = liveStatus();
+let target = nowH < 1 ? nowH + 24 : nowH < 8 ? 21 : nowH;
+target = Math.round(target * 4) / 4;
+apply(8);
+setTimeout(() => animateTo(target, 1800), 350);
+setInterval(liveStatus, 60000);
+</script>
+</body>
+</html>
